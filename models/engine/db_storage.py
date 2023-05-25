@@ -8,6 +8,15 @@ from models.base_model import BaseModel, Base
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+from models.account import Account
+from models.bank import Bank
+from models.banker import Banker
+from models.branch import Branch
+from models.customer import Customer
+from models.loan import Loan
+
+classes = {"Account": Account, "BaseModel": BaseModel, "Bank": Bank,
+           "Banker": Banker, "Branch": Branch, "Customer": Customer, "Loan": Loan}
 
 
 class DBStorage:
@@ -18,16 +27,17 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        HBNB_MYSQL_USER = getenv('HBNB_MYSQL_USER')
-        HBNB_MYSQL_PWD = getenv('HBNB_MYSQL_PWD')
-        HBNB_MYSQL_HOST = getenv('HBNB_MYSQL_HOST')
-        HBNB_ENV = getenv('HBNB_ENV')
+        SBS_MYSQL_USER = getenv('SBS_MYSQL_USER')
+        SBS_MYSQL_PWD = getenv('SBS_MYSQL_PWD')
+        SBS_MYSQL_HOST = getenv('SBS_MYSQL_HOST')
+        SBS_MYSQL_DB = getenv('SBS_MYSQL_DB')
+        SBS_ENV = getenv('SBS_ENV')
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
-                                      format(HBNB_MYSQL_USER,
-                                             HBNB_MYSQL_PWD,
-                                             HBNB_MYSQL_HOST,
-                                             HBNB_MYSQL_DB))
-        if HBNB_ENV == "test":
+                                      format(SBS_MYSQL_USER,
+                                             SBS_MYSQL_PWD,
+                                             SBS_MYSQL_HOST,
+                                             SBS_MYSQL_DB))
+        if SBS_ENV == "test":
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
