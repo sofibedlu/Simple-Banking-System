@@ -6,6 +6,7 @@ contains the class DBStorage
 from os import getenv
 from models.base_model import BaseModel, Base
 import sqlalchemy
+import models
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from models.account import Account
@@ -15,7 +16,7 @@ from models.branch import Branch
 from models.customer import Customer
 from models.loan import Loan
 
-classes = {"Account": Account, "BaseModel": BaseModel, "Bank": Bank,
+classes = {"Account": Account, "Bank": Bank,
            "Banker": Banker, "Branch": Branch, "Customer": Customer, "Loan": Loan}
 
 

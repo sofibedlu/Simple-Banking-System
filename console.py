@@ -18,7 +18,7 @@ classes = {"Account": Account, "BaseModel": BaseModel, "Bank": Bank,
 
 
 class SBSCommand(cmd.Cmd):
-    """ HBNH console """
+    """ SBS console """
     prompt = '(sbsy) '
 
     def do_EOF(self, arg):
