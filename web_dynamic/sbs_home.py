@@ -10,6 +10,7 @@ from web_dynamic.views import app_views
 secret_key = secrets.token_hex(16)
 
 app = Flask(__name__)
+app.debug = True
 app.secret_key = secret_key
 app.register_blueprint(app_views)
 login_manager.init_app(app)
