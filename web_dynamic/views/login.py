@@ -8,7 +8,7 @@ from uuid import uuid4
 
 @app_views.route('/login', methods=['GET'], strict_slashes=False)
 def login():
-    """return home page for SBS"""
+    """return login page for SBS"""
 
     cache_id = str(uuid4())
     return render_template('login.html', cache_id=cache_id)

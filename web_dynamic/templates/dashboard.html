@@ -1,103 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Banker Dashboard</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
-
-<body>
-  <!-- Header -->
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Banker Dashboard</a>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/home">Logout</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Content -->
-  <main>
-    <!-- Customer Account and Loan Details -->
-    <div class="container mt-4">
-      <h2>Customer Details</h2>
-      <!-- Interface to retrieve customer information -->
-      <div class="input-group mb-3">
-        <input type="text" id="search-input" class="form-control" placeholder="Enter account/loan number">
-        <div class="input-group-append">
-          <button id="search-btn" class="btn btn-primary">Search</button>
+{% block content %}
+    <h2>Welcome to Your Dashboard</h2>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h4>Customers</h4>
+            <p>Manage customer information and accounts:</p>
+            <ul>
+                <li><a href="/customers">View All Customers</a></li>
+                <li><a id="create-customer-link" href="/customers/create">Create New Customer</a></li>
+                <li><a href="/accounts">View All Accounts</a></li>
+                <li><a href="/accounts/create">Create New Account</a></li>
+            </ul>
         </div>
-      </div>
-
-      <h3>Account Details</h3>
-      <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th>Account Number</th>
-            <th>Customer Name</th>
-            <th>Balance</th>
-            <th>Interest Rate</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Use a loop to dynamically populate the table rows with account data -->
-          <tr>
-            <td>123456789</td>
-            <td>John Doe</td>
-            <td>$5000</td>
-            <td>3.5%</td>
-            <td>
-              <button class="btn btn-primary">Edit</button>
-              <button class="btn btn-danger">Delete</button>
-            </td>
-          </tr>
-          <!-- Add more rows for each account -->
-        </tbody>
-      </table>
-
-      <h3>Loan Details</h3>
-      <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th>Loan Number</th>
-            <th>Customer Name</th>
-            <th>Loan Amount</th>
-            <th>Interest Rate</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Use a loop to dynamically populate the table rows with loan data -->
-          <tr>
-            <td>987654321</td>
-            <td>John Doe</td>
-            <td>$10000</td>
-            <td>5%</td>
-            <td>
-              <button class="btn btn-primary">Edit</button>
-              <button class="btn btn-danger">Delete</button>
-            </td>
-          </tr>
-          <!-- Add more rows for each loan -->
-        </tbody>
-      </table>
+        <div class="col-md-6">
+            <h4>Loans</h4>
+            <p>Manage loan information:</p>
+            <ul>
+                <li><a href="/loans">View All Loans</a></li>
+                <li><a href="/loans/create">Create New Loan</a></li>
+            </ul>
+        </div>
     </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer mt-auto py-3">
-    <div class="container">
-      <p class="text-center">© 2023 Banker Dashboard. All rights reserved.</p>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h4>Transactions</h4>
+            <p>Perform banking transactions:</p>
+            <ul>
+                <li><a href="/transactions">View All Transactions</a></li>
+                <li><a href="/transactions/create">Create New Transaction</a></li>
+            </ul>
+        </div>
     </div>
-  </footer>
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+    <div class="overlay" id="customer-form-overlay">
+        <div class="customer-form-container">
+            <h4>Create New Customer</h4>
+            <form id="customer-form" method="post" action="/customers">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="city" name="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="street">Street</label>
+                    <input type="text" class="form-control" id="street" name="street" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-secondary" id="cancel-customer">Cancel</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

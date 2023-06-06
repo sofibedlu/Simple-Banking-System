@@ -8,3 +8,6 @@ from web_dynamic.views.dashboard import *
 from web_dynamic.views.login import *
 from web_dynamic.views.home import *
 from web_dynamic.views.auth import *
+from web_dynamic.views.base import *
+from web_dynamic.views.signup import *
+from web_dynamic.views.logout import *
